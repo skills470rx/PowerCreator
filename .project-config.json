@@ -1,0 +1,43 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [
+    "server",
+    "db",
+    "user"
+  ],
+  "dev_command": "pnpm run dev",
+  "env_vars": {
+    "DATABASE_URL": "mysql://2FxuJ5CiRXeysSR.96db4c62c1f5:qO53dCBJaa2yCe6F7d8t@gateway05.us-east-1.prod.aws.tidbcloud.com:4000/KiozWeAm3h8JLyWYhs6Xap?ssl={\"rejectUnauthorized\":true}"
+  },
+  "experiments": [
+    "no_db_push"
+  ],
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663521112118/KiozWeAm3h8JLyWYhs6Xap",
+    "access_key_id": "ASIAZV3A2ECZJAIK6R2H",
+    "secret_access_key": "XgDRF8tOoTcK680z7DelFrE3HQww4fiPRCoh/Sb7",
+    "session_token": "IQoJb3JpZ2luX2VjENj//////////wEaCXVzLWVhc3QtMSJHMEUCIQCoTPis35/kiQKKLAsURNvkRgoQAqmbhgHH9HRLjdoA9wIgGDp9GHoHkGsUYT5bCQsRBIna2mvNBrkZVKVr2Vj7gnoq/gMIoP//////////ARAEGgw2NjUzODYwOTg4NjYiDEiB+z16s3OWHs8NWyrSA7mfsni18Wrv6TiuUU3UyHWVi/zYPRf8FutXoQbi0YqlEDcflcjRSW+DGqkI+91oEqnvOt87ZB60tMTKYNFm43BsTYgc6uOJguObRm1LjUnm7AobSDNtbQT5rCWjv/5bJP0ncYWi1s6RR5AD3rFwSyUCRHk7FN8HDGxPU1z8FUTnbxcWgLpTutlL0PgLsLTB5zgz8WkNBo9qC+V6vSYqn5yaXiPd/ZkWWVuUv4FsTcrJARzAfxsHJldBQ1Yl+0aHiWsgDkgD9bV5b80lVqXiWFbeV+E600BD8llqZWsZkIKTqkzT1N52ZAgJznwncgQ06cX+iFDfcrjywzfV+j4ss4O8S+MG0ZUgWMVQHMLLqw/yFMuhvTltlXI11Epy7O26+rV0b1j0dZMmogBYkNWEqVuK2u++h1DWsaQk2JBt5Tbo4fBOWViHdOvDceCY+wotM0mODPmGgYf1C1nSTjL6rANuikli+tueP5lEgsXAObHbu1+Tn3f5Pfg5CxEfAwfZlsCh8hLYuElTXiazaFMEoFUvDCtT5GohcqrnI3E2YKIdnXIEDLsMHz/kGSUQtw2v3ZUUaHXXnPOwXXgf48iaikTF9Hk+EjFZQkdtn/euK28xZLMw3tWl0AY6nQFt2efzzzbs5teLj2IPfSY0BGJvGbrfzsm5AlHRMuFYRAy0fjAtY5mmu07kay0u4qm2UVX05pmXvy4PF0CniYX8nFT4SZSxG8rEEMAeBpFqr+6lUJlBlR+ETN2XGhu8bEEgvFv9T4T+r5rOhi+GNxslHjVH7D9giBhqL2e903O11Rl/zPUmXOVkxF75Qe4udvJF0e5lCO/tpqUfY5pF",
+    "expiration": "2026-05-17T19:14:38.000Z"
+  },
+  "name": "PowerCreator",
+  "path": "/home/ubuntu/PowerCreator",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "PAaqyGitSyAYpC6sDyiyEE",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "YajXXXCtVCaA62KynNTmNV",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "alpha",
+    "OWNER_OPEN_ID": "RhBa2CigDVihbbUQoLBQcF",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "228c02d8-8c8b-4ec9-8e16-d00d4f6800ed",
+    "VITE_APP_ID": "KiozWeAm3h8JLyWYhs6Xap",
+    "VITE_APP_LOGO": "",
+    "VITE_APP_TITLE": "PowerCreator Platform",
+    "VITE_FRONTEND_FORGE_API_KEY": "ndawV6k7icdPJANmvRadbF",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-db-user",
+  "test_command": "pnpm test"
+}
