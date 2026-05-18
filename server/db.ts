@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, and, or, desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, messages, InsertMessage, creators } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,112 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// Chat-related queries
+export async function getConversations(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    const result = await db
+      .select()
+      .from(messages)
+      .where(
+        or(
+          eq(messages.senderId, userId),
+          eq(messages.receiverId, userId)
+        )
+      )
+      .orderBy(desc(messages.createdAt))
+      .limit(100);
+
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get conversations:", error);
+    return [];
+  }
+}
+
+export async function getMessageHistory(userId: number, otherUserId: number, limit = 50) {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    const result = await db
+      .select()
+      .from(messages)
+      .where(
+        or(
+          and(
+            eq(messages.senderId, userId),
+            eq(messages.receiverId, otherUserId)
+          ),
+          and(
+            eq(messages.senderId, otherUserId),
+            eq(messages.receiverId, userId)
+          )
+        )
+      )
+      .orderBy(desc(messages.createdAt))
+      .limit(limit);
+
+    return result.reverse();
+  } catch (error) {
+    console.error("[Database] Failed to get message history:", error);
+    return [];
+  }
+}
+
+export async function saveMessage(message: InsertMessage) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot save message: database not available");
+    return null;
+  }
+
+  try {
+    const result = await db.insert(messages).values(message);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to save message:", error);
+    return null;
+  }
+}
+
+export async function markMessagesAsRead(userId: number, otherUserId: number) {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    await db
+      .update(messages)
+      .set({ isRead: true })
+      .where(
+        and(
+          eq(messages.receiverId, userId),
+          eq(messages.senderId, otherUserId)
+        )
+      );
+    return true;
+  } catch (error) {
+    console.error("[Database] Failed to mark messages as read:", error);
+    return false;
+  }
+}
+
+export async function getCreatorInfo(creatorId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const result = await db
+      .select()
+      .from(creators)
+      .where(eq(creators.id, creatorId))
+      .limit(1);
+
+    return result.length > 0 ? result[0] : null;
+  } catch (error) {
+    console.error("[Database] Failed to get creator info:", error);
+    return null;
+  }
+}
